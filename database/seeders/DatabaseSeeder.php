@@ -1,8 +1,7 @@
 <?php
 
-namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +12,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $faker = Faker\Factory::create();
+        $data = [];
+        for ($i = 0; $i < 5; $i++) {
+            $data[] = [
+                'project_name' => $faker->name,
+                'project_description' => $faker->paragraph,
+                'project_code' => $faker->regexify('[A-Z]{5}[0-4]{3}'),
+                'project_status' => $faker->numberBetween(0, 1)
+            ];
+        }
+        DB::table('project')->insert($data);
     }
 }
