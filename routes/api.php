@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\displayProjectController;
+use App\Http\Controllers\projectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//header parameters to allow external server to access
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['cors'])->group(function () {
+    Route::get('/projectData', [displayProjectController::class, 'index']);
+    Route::post('/store', [projectController::class, 'store'])->name('store');
+    Route::post('/update/{id}', [projectController::class, 'update']);
+    Route::resource('/project', projectController::class);
+    Route::get('/projectData/edit/{id}', [displayProjectController::class, 'edit']);
+    Route::post('/destroy/{id}', [projectController::class, 'destroy']);
 });
-
-Route::get('/project', 'ProjectController@index');

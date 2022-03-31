@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\projectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//header parameters to allow external server to access
+
+Route::middleware(['cors'])->group(function () {
+    Route::resource('/project', projectController::class);
 });

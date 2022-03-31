@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $data = [];
         for ($i = 0; $i < 5; $i++) {
             $data[] = [
-                'project_name' => $faker->name,
+                'project_name' => $faker->company,
                 'project_description' => $faker->paragraph,
                 'project_code' => $faker->regexify('[A-Z]{5}[0-4]{3}'),
                 'project_status' => $faker->numberBetween(0, 1)
