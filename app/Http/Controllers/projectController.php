@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class projectController extends Controller
 {
 
-    public function create()
+    public function index()
     {
         $request = Request::create('api/projectData', 'GET', [
             'HTTP_Accept' => 'application/json',

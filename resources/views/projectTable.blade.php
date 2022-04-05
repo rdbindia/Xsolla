@@ -19,29 +19,32 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($tableData as $data)
-                <tr>
-                    <td>{{$data['project_id']}}</td>
-                    <td>{{$data['project_name']}}</td>
-                    <td>{{$data['project_description']}}</td>
-                    <td>{{$data['project_code']}}</td>
-                    <td>@if($data['project_status']) <span class="label label-success">Active</span> @else <span
-                            class="label">Inactive</span> @endif</td>
-                    <td class="text-center">
-                        <a class='btn btn-info btn-lg editProject' href="#" data-toggle="modal"
-                           data-target="#myModal" data-id="{{$data['project_id']}}">
-                            <span class="glyphicon glyphicon-edit"></span> Edit
-                        </a>
-                        <a href="#" class="btn btn-danger btn-lg deleteProject" data-id="{{$data['project_id']}}" data-target="#deleteModal">
-                            <span class="glyphicon glyphicon-remove"></span> Delete
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
+            @if($tableData)
+                @foreach($tableData as $data)
+                    <tr>
+                        <td>{{$data['project_id']}}</td>
+                        <td>{{$data['project_name']}}</td>
+                        <td>{{$data['project_description']}}</td>
+                        <td>{{$data['project_code']}}</td>
+                        <td>@if($data['project_status']) <span class="label label-success">Active</span> @else <span
+                                class="label">Inactive</span> @endif</td>
+                        <td class="text-center">
+                            <a class='btn btn-info btn-lg editProject' href="#" data-toggle="modal"
+                               data-target="#myModal" data-id="{{$data['project_id']}}">
+                                <span class="glyphicon glyphicon-edit"></span> Edit
+                            </a>
+                            <a href="#" class="btn btn-danger btn-lg deleteProject" data-id="{{$data['project_id']}}"
+                               data-target="#deleteModal">
+                                <span class="glyphicon glyphicon-remove"></span> Delete
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
             </tbody>
         </table>
 
-        @include('modal/createProject');
+        @include('modal/createProject')
 
     </div>
 </div>
@@ -65,7 +68,7 @@
 
             let project_id = $('#project_id').val();
             let url = "<?=env('APP_URL') . '/api/store' ?>";
-            if (project_id != ''){
+            if (project_id != '') {
                 url = "<?=env('APP_URL') . '/api/update/' ?>" + project_id;
             }
 
@@ -94,7 +97,7 @@
                         $('#myModal').modal('hide');
                     }
 
-                    setTimeout(function(){
+                    setTimeout(function () {
                         window.location.reload(1);
                     }, 1000);
                 },
@@ -137,7 +140,7 @@
                 dataType: 'json',
                 success: function (result) {
                     $('#deleteModal').modal('show');
-                    setTimeout(function(){
+                    setTimeout(function () {
                         window.location.reload(1);
                     }, 1000);
                 },
