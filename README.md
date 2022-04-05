@@ -3,5 +3,6 @@
 3. composer install
 4. Add your database config in the .env file. I have named the DB xsolla.
 5. php artisan migrate OR vendor/bin/phinx migrate(library for migration of DB)
-6. php artisan serve. Use the ip generated to replace localhost:8000 in the .env file for APP_URL
-7. Navigate to http://localhost:8000/project
+6. Run php artisan db:seed to run faker to add data into the database table.
+7. php artisan serve. Use the ip generated to replace localhost:8000 in the .env file for APP_URL
+8. Navigate to http://localhost:8000/project
