@@ -68,8 +68,10 @@
 
             let project_id = $('#project_id').val();
             let url = "<?=env('APP_URL') . '/api/store' ?>";
+            let method = "POST";
             if (project_id != '') {
                 url = "<?=env('APP_URL') . '/api/update/' ?>" + project_id;
+                method = "PATCH";
             }
 
             $.ajax({
@@ -82,6 +84,7 @@
                     project_description: $('#project_description').val(),
                     is_active: $('#is_active').is(':checked'),
                     _token: $('meta[name="_token"]').attr('content'),
+                    _method: method
                 },
                 success: function (result) {
                     if (result.errors) {
@@ -138,6 +141,9 @@
                 url: "<?=env('APP_URL') . '/api/destroy/'?>" + id,
                 method: 'post',
                 dataType: 'json',
+                data:{
+                    _method: "DELETE"
+                },
                 success: function (result) {
                     $('#deleteModal').modal('show');
                     setTimeout(function () {

@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 //header parameters to allow external server to access
 
 Route::middleware(['cors'])->group(function () {
-    Route::resource('/project', projectController::class);
+    Route::resource('/', projectController::class);
 });

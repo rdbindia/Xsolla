@@ -20,7 +20,9 @@ class displayProjectController extends Controller
     public function edit($id)
     {
         $project = ProjectModel::findorFail($id);
-        if(!$project){abort(404);}
+        if (!$project) {
+            abort(404);
+        }
 
         return json_encode($project);
     }

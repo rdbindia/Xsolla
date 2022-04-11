@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['cors'])->group(function () {
     Route::get('/projectData', [displayProjectController::class, 'index']);
     Route::post('/store', [projectController::class, 'store'])->name('store');
-    Route::post('/update/{id}', [projectController::class, 'update']);
+    Route::patch('/update/{id}', [projectController::class, 'update']);
     Route::resource('/project', projectController::class);
     Route::get('/projectData/edit/{id}', [displayProjectController::class, 'edit']);
-    Route::post('/destroy/{id}', [projectController::class, 'destroy']);
+    Route::delete('/destroy/{id}', [projectController::class, 'destroy']);
 });
